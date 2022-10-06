@@ -88,6 +88,7 @@ body {
   color: rgb(99, 3, 254);
   border: 1px solid black;
   width: 300px;
+  justify-content: right;
 }
 
 #oopsy {

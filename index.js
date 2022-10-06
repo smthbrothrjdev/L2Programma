@@ -60,6 +60,13 @@ function go() {
     setTimeout(() => {
       // console.log("awake");
       prev_ID = selected_ID;
+      if (i != 0) {
+        document.getElementById("output").children[
+          i - 1
+        ].style.backgroundColor = "";
+      }
+      document.getElementById("output").children[i].style.backgroundColor =
+        "green";
       if (tempIS[i] == "up") move_up();
 
       if (tempIS[i] == "down") move_down();
@@ -68,13 +75,17 @@ function go() {
 
       if (tempIS[i] == "left") move_left();
 
-      if (bumped()) {
+      if (bumped(i)) {
         paint();
       }
     }, 750 * i);
   }
-  instructionSet = [];
-  document.getElementById("output").innerHTML = "";
+
+  setTimeout(() => {
+    document.getElementById("output").innerHTML = "";
+    instructionSet = [];
+    printout.innerText = "Finished!";
+  }, 750 * tempIS.length);
 }
 
 document.addEventListener("keydown", (event) => {
@@ -180,13 +191,18 @@ function makeRows(rows, cols) {
   }
 }
 
-function bumped() {
+function bumped(i = -1) {
   if (selected_ID <= 0 || selected_ID > TOTAL_COLS * TOTAL_ROWS) {
     oops();
+    console.log(i);
+    document.getElementById("output").children[i].style.backgroundColor = "red";
     return false;
   } else {
     if (document.getElementById(selected_ID).style.backgroundColor == "black") {
       oops();
+      console.log(i);
+      document.getElementById("output").children[i].style.backgroundColor =
+        "red";
     }
     return true;
   }
