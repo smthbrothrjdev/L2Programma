@@ -32,7 +32,6 @@ document.getElementById("filer").addEventListener("change", (e) => {
 });
 
 function setMap(event) {
-  const comp = this;
   const file = event.target.files[0];
   const promise = new Promise((resolve) => {
     const reader = new FileReader();
@@ -48,7 +47,26 @@ function setMap(event) {
 }
 
 function drawMap(fileContent) {
-  console.log(fileContent);
+  let count = 1;
+  let rows = fileContent.split("\n");
+  for (let i = 0; i < rows.length; i++) {
+    const cols = rows[i].split(" ");
+    for (let j = 0; j < cols.length; j++) {
+      let index = parseInt(cols[j]);
+
+      // console.log(j + ": " + index);
+
+      if (index == 0) {
+        document.getElementById(count).style.backgroundColor = "white";
+      }
+
+      if (index == 1) {
+        document.getElementById(count).style.backgroundColor = "black";
+        console.log("black at " + count);
+      }
+      count++;
+    }
+  }
 }
 
 /////////
