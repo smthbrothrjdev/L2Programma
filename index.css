@@ -1,5 +1,6 @@
 .grid-container {
   display: grid;
+  float: left;
   grid-template-columns: auto auto auto;
   background-color: #2196f3;
   padding: 0px;
@@ -22,10 +23,13 @@
 #container {
   display: grid;
   grid-gap: 1px;
+  float: left;
   grid-template-rows: repeat(var(--grid-rows), 100px);
   grid-template-columns: repeat(var(--grid-cols), 100px);
 }
-
+.io {
+  display: inline-block;
+}
 .controls {
   border: 1px solid red;
 }

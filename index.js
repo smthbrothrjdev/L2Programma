@@ -49,22 +49,24 @@ function updateInstructionSet(event) {
 }
 
 function go() {
+  let tempIS = instructionSet;
   for (let i = 0; i < instructionSet.length; i++) {
     // console.log("going to sleep");
+    setTimeout(() => {
+      // console.log("awake");
+      prev_ID = selected_ID;
+      if (tempIS[i] == "up") move_up();
 
-    // console.log("awake");
-    prev_ID = selected_ID;
-    if (instructionSet[i] == "up") move_up();
+      if (tempIS[i] == "down") move_down();
 
-    if (instructionSet[i] == "down") move_down();
+      if (tempIS[i] == "right") move_right();
 
-    if (instructionSet[i] == "right") move_right();
+      if (tempIS[i] == "left") move_left();
 
-    if (instructionSet[i] == "left") move_left();
-
-    if (bumped()) {
-      paint();
-    }
+      if (bumped()) {
+        paint();
+      }
+    }, 750 * i);
   }
   instructionSet = [];
   document.getElementById("output").innerHTML = "";
@@ -199,11 +201,15 @@ function sleep(milliseconds) {
 }
 //paint function
 function paint() {
-  document.getElementById(prev_ID).style.backgroundImage = null;
+  //debugger
 
-  document.getElementById(selected_ID).style.backgroundImage =
-    "url(tennisball.gif)";
-  document.getElementById(selected_ID).style.backgroundSize = "100px 100px";
+  const one = (document.getElementById(prev_ID).style.backgroundImage = null);
+
+  const two = (document.getElementById(selected_ID).style.backgroundImage =
+    "url(cat-4.gif)");
+
+  const three = (document.getElementById(selected_ID).style.backgroundSize =
+    "100px 100px");
 
   if (selected_ID == target_ID) {
     victory();
@@ -214,3 +220,5 @@ makeRows(TOTAL_ROWS, TOTAL_COLS);
 
 /////paint
 paint();
+
+console.log("this will print first");
