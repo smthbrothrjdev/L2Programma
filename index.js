@@ -1,11 +1,14 @@
 let prev_ID = 1;
 let selected_ID = 1;
+let target_ID = 0;
 const TOTAL_ROWS = 10;
-const TOTAL_COLS = 20;
+const TOTAL_COLS = 10;
 const BALL_VERTICAL = 30;
 const BALL_HORIZONTAL = 30;
+const DELAY_TIME = 500;
 const container = document.getElementById("container");
 let fileContent = "";
+let instructionSet = [];
 
 //setup maze
 // const ball = document.getElementById("ball");
@@ -15,6 +18,57 @@ let fileContent = "";
 
 //const p = document.getElementById("p");
 //p.textContent = "fromLeft: " + ball.offsetLeft;
+
+document.getElementById("up").addEventListener("click", (ev) => {
+  updateInstructionSet(ev);
+});
+
+document.getElementById("down").addEventListener("click", (ev) => {
+  updateInstructionSet(ev);
+});
+
+document.getElementById("left").addEventListener("click", (ev) => {
+  updateInstructionSet(ev);
+});
+
+document.getElementById("right").addEventListener("click", (ev) => {
+  updateInstructionSet(ev);
+});
+
+document.getElementById("go").addEventListener("click", () => {
+  go();
+});
+
+function updateInstructionSet(event) {
+  const instruction = event.target.id;
+  instructionSet.push(instruction);
+
+  document.getElementById(
+    "output"
+  ).innerHTML += `<h2 class="output--h2">${instruction}</h2>`;
+}
+
+function go() {
+  for (let i = 0; i < instructionSet.length; i++) {
+    // console.log("going to sleep");
+
+    // console.log("awake");
+    prev_ID = selected_ID;
+    if (instructionSet[i] == "up") move_up();
+
+    if (instructionSet[i] == "down") move_down();
+
+    if (instructionSet[i] == "right") move_right();
+
+    if (instructionSet[i] == "left") move_left();
+
+    if (bumped()) {
+      paint();
+    }
+  }
+  instructionSet = [];
+  document.getElementById("output").innerHTML = "";
+}
 
 document.addEventListener("keydown", (event) => {
   prev_ID = selected_ID;
@@ -62,8 +116,18 @@ function drawMap(fileContent) {
 
       if (index == 0) {
         document.getElementById(count).style.backgroundColor = "black";
-        console.log("black at " + count);
       }
+
+      if (index == 2) {
+        document.getElementById(count).style.backgroundImage =
+          "url(present.gif)";
+        document.getElementById(count).style.backgroundSize = "100px 100px";
+        target_ID = count;
+      }
+      //reset outputbox
+      document.getElementById("output").innerHTML = "";
+      instructionSet = [];
+
       count++;
     }
   }
@@ -117,9 +181,21 @@ function bumped() {
   }
 }
 
+function victory() {
+  alert("VICTORY!");
+}
+
 function oops() {
   console.log("OOPS");
   selected_ID = prev_ID;
+}
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
 }
 //paint function
 function paint() {
@@ -128,6 +204,10 @@ function paint() {
   document.getElementById(selected_ID).style.backgroundImage =
     "url(tennisball.gif)";
   document.getElementById(selected_ID).style.backgroundSize = "100px 100px";
+
+  if (selected_ID == target_ID) {
+    victory();
+  }
 }
 
 makeRows(TOTAL_ROWS, TOTAL_COLS);

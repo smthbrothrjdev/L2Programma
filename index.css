@@ -4,7 +4,7 @@
   background-color: #2196f3;
   padding: 0px;
 }
-.master{
+.master {
   width: 1000px;
 }
 .grid-item {
@@ -24,4 +24,35 @@
   grid-gap: 1px;
   grid-template-rows: repeat(var(--grid-rows), 100px);
   grid-template-columns: repeat(var(--grid-cols), 100px);
+}
+
+.controls {
+  border: 1px solid red;
+}
+.controls--item {
+  height: 100px;
+  width: 100px;
+}
+
+.controls--item:hover {
+  height: 110px;
+  width: 110px;
+  cursor: pointer;
+}
+
+.output {
+  border: 1px solid darkblue;
+}
+.output--h2 {
+  margin: 0px;
+  color: #2196f3;
+}
+
+.go {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(193, 66, 66);
+  color: white;
+  font-weight: bolder;
+  border-radius: 8px;
 }
