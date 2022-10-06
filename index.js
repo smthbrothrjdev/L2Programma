@@ -56,11 +56,11 @@ function drawMap(fileContent) {
 
       // console.log(j + ": " + index);
 
-      if (index == 0) {
+      if (index == 1) {
         document.getElementById(count).style.backgroundColor = "white";
       }
 
-      if (index == 1) {
+      if (index == 0) {
         document.getElementById(count).style.backgroundColor = "black";
         console.log("black at " + count);
       }
@@ -134,5 +134,3 @@ makeRows(TOTAL_ROWS, TOTAL_COLS);
 
 /////paint
 paint();
-
-document.getElementById(8).style.backgroundColor = "black";
