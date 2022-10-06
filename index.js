@@ -1,5 +1,3 @@
-let counter_x = 1;
-let counter_y = 1;
 let prev_ID = 1;
 let selected_ID = 1;
 const TOTAL_ROWS = 10;
@@ -7,6 +5,7 @@ const TOTAL_COLS = 20;
 const BALL_VERTICAL = 30;
 const BALL_HORIZONTAL = 30;
 const container = document.getElementById("container");
+let fileContent = "";
 
 //setup maze
 // const ball = document.getElementById("ball");
@@ -27,6 +26,30 @@ document.addEventListener("keydown", (event) => {
     paint();
   }
 });
+
+document.getElementById("filer").addEventListener("change", (e) => {
+  setMap(e);
+});
+
+function setMap(event) {
+  const comp = this;
+  const file = event.target.files[0];
+  const promise = new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = function () {
+      resolve(reader.result);
+    };
+    reader.readAsText(file);
+  });
+  promise.then((txt) => {
+    fileContent = txt;
+    drawMap(fileContent);
+  });
+}
+
+function drawMap(fileContent) {
+  console.log(fileContent);
+}
 
 /////////
 
