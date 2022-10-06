@@ -1,3 +1,17 @@
+body {
+  background: #004ff9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #fff94c,
+    #004ff9
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #fff94c,
+    #004ff9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .grid-container {
   display: grid;
   float: left;
@@ -49,7 +63,10 @@
 }
 .output--h2 {
   margin: 0px;
-  color: #2196f3;
+  color: #ff0000;
+  margin-right: 40px;
+  font-size: 40px;
+  text-align: center;
 }
 
 .go {
@@ -59,4 +76,29 @@
   color: white;
   font-weight: bolder;
   border-radius: 8px;
+}
+
+#printout {
+  position: fixed;
+  left: 1100px;
+  float: right;
+  text-align: center;
+  font-size: xx-large;
+  padding-right: 40px;
+  color: rgb(99, 3, 254);
+  border: 1px solid black;
+  width: 300px;
+}
+
+#oopsy {
+  position: fixed;
+  left: 1100px;
+  float: right;
+  text-align: center;
+  font-size: xx-large;
+  padding-right: 40px;
+  color: red;
+
+  border: 1px solid black;
+  width: 300px;
 }

@@ -7,6 +7,9 @@ const BALL_VERTICAL = 30;
 const BALL_HORIZONTAL = 30;
 const DELAY_TIME = 500;
 const container = document.getElementById("container");
+const printout = document.getElementById("printout");
+const oopsy = document.getElementById("oopsy");
+
 let fileContent = "";
 let instructionSet = [];
 
@@ -50,6 +53,8 @@ function updateInstructionSet(event) {
 
 function go() {
   let tempIS = instructionSet;
+  printout.innerHTML = "";
+  oopsy.innerHTML = "";
   for (let i = 0; i < instructionSet.length; i++) {
     // console.log("going to sleep");
     setTimeout(() => {
@@ -122,7 +127,7 @@ function drawMap(fileContent) {
 
       if (index == 2) {
         document.getElementById(count).style.backgroundImage =
-          "url(present.gif)";
+          "url(/assets/present.gif)";
         document.getElementById(count).style.backgroundSize = "100px 100px";
         target_ID = count;
       }
@@ -139,10 +144,12 @@ function drawMap(fileContent) {
 
 function move_down() {
   selected_ID += TOTAL_COLS;
+  printout.innerText = "Moving down!";
 }
 
 function move_right() {
   selected_ID += 1;
+  printout.innerText = "Moving right!";
   if (selected_ID % TOTAL_COLS == 1) {
     oops();
   }
@@ -150,12 +157,14 @@ function move_right() {
 
 function move_left() {
   selected_ID -= 1;
+  printout.innerText = "Moving left!";
   if (selected_ID % TOTAL_COLS == 0) {
     oops();
   }
 }
 
 function move_up() {
+  printout.innerText = "Moving up!";
   selected_ID -= TOTAL_COLS;
 }
 
@@ -165,7 +174,7 @@ function makeRows(rows, cols) {
   container.style.setProperty("--grid-cols", cols);
   for (c = 0; c < rows * cols; c++) {
     let cell = document.createElement("div");
-    cell.innerText = c + 1;
+    // cell.innerText = c + 1;
     cell.setAttribute("id", c + 1);
     container.appendChild(cell).className = "grid-item";
   }
@@ -189,6 +198,7 @@ function victory() {
 
 function oops() {
   console.log("OOPS");
+  oopsy.innerHTML += "<h4>YOU RAN INTO A WALL!</h4>";
   selected_ID = prev_ID;
 }
 
@@ -206,7 +216,7 @@ function paint() {
   const one = (document.getElementById(prev_ID).style.backgroundImage = null);
 
   const two = (document.getElementById(selected_ID).style.backgroundImage =
-    "url(cat-4.gif)");
+    "url(/assets/cat-4.gif)");
 
   const three = (document.getElementById(selected_ID).style.backgroundSize =
     "100px 100px");
@@ -220,5 +230,3 @@ makeRows(TOTAL_ROWS, TOTAL_COLS);
 
 /////paint
 paint();
-
-console.log("this will print first");
