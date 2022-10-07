@@ -9,6 +9,7 @@ const DELAY_TIME = 500;
 const container = document.getElementById("container");
 const printout = document.getElementById("printout");
 const oopsy = document.getElementById("oopsy");
+const keyButton = document.getElementById("key");
 let key = "";
 
 let fileContent = "";
@@ -223,10 +224,12 @@ function bumped(i = -1) {
     // set the key
     if (document.getElementById(selected_ID).style.backgroundColor == "blue") {
       key = "blue";
+      keyButton.style.backgroundColor = "blue";
     }
 
     if (document.getElementById(selected_ID).style.backgroundColor == "red") {
       key = "red";
+      keyButton.style.backgroundColor = "red";
     }
     //horz blue- red
     if (

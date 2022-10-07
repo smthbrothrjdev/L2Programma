@@ -68,6 +68,15 @@ body {
   font-size: 40px;
   text-align: center;
 }
+#key{
+  width: 300px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  border-radius: 8px;
+  font-size: larger;
+}
 
 .go {
   width: 100px;
