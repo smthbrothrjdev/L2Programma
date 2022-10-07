@@ -9,6 +9,7 @@ const DELAY_TIME = 500;
 const container = document.getElementById("container");
 const printout = document.getElementById("printout");
 const oopsy = document.getElementById("oopsy");
+let key = "red";
 
 let fileContent = "";
 let instructionSet = [];
@@ -142,6 +143,12 @@ function drawMap(fileContent) {
         document.getElementById(count).style.backgroundSize = "100px 100px";
         target_ID = count;
       }
+
+      if (index == 3) {
+        document.getElementById(count).style.backgroundImage =
+          "url(/assets/con-h-bluered.png)";
+        document.getElementById(count).style.backgroundSize = "100px 100px";
+      }
       //reset outputbox
       document.getElementById("output").innerHTML = "";
       instructionSet = [];
@@ -192,6 +199,7 @@ function makeRows(rows, cols) {
 }
 
 function bumped(i = -1) {
+  console.log(document.getElementById(selected_ID).style.backgroundImage);
   if (selected_ID <= 0 || selected_ID > TOTAL_COLS * TOTAL_ROWS) {
     oops();
     console.log(i);
@@ -203,6 +211,28 @@ function bumped(i = -1) {
       console.log(i);
       document.getElementById("output").children[i].style.backgroundColor =
         "red";
+    }
+
+    //horz blue- red
+    if (
+      document.getElementById(selected_ID).style.backgroundImage ==
+      'url("/assets/con-h-bluered.png")'
+    ) {
+      if (key == "") {
+        oops();
+        document.getElementById("output").children[i].style.backgroundColor =
+          "red";
+      }
+      if (key == "blue") {
+        selected_ID--;
+        document.getElementById("output").children[i].style.backgroundColor =
+          "blue";
+      }
+      if (key == "red") {
+        selected_ID++;
+        document.getElementById("output").children[i].style.backgroundColor =
+          "blue";
+      }
     }
     return true;
   }
