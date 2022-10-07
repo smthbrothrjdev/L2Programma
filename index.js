@@ -9,7 +9,7 @@ const DELAY_TIME = 500;
 const container = document.getElementById("container");
 const printout = document.getElementById("printout");
 const oopsy = document.getElementById("oopsy");
-let key = "red";
+let key = "";
 
 let fileContent = "";
 let instructionSet = [];
@@ -149,6 +149,14 @@ function drawMap(fileContent) {
           "url(/assets/con-h-bluered.png)";
         document.getElementById(count).style.backgroundSize = "100px 100px";
       }
+
+      if (index == 9) {
+        document.getElementById(count).style.backgroundColor = "red";
+      }
+
+      if (index == 8) {
+        document.getElementById(count).style.backgroundColor = "blue";
+      }
       //reset outputbox
       document.getElementById("output").innerHTML = "";
       instructionSet = [];
@@ -212,7 +220,14 @@ function bumped(i = -1) {
       document.getElementById("output").children[i].style.backgroundColor =
         "red";
     }
+    // set the key
+    if (document.getElementById(selected_ID).style.backgroundColor == "blue") {
+      key = "blue";
+    }
 
+    if (document.getElementById(selected_ID).style.backgroundColor == "red") {
+      key = "red";
+    }
     //horz blue- red
     if (
       document.getElementById(selected_ID).style.backgroundImage ==
